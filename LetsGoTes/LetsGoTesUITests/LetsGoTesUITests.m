@@ -1,17 +1,17 @@
 //
-//  TestBiliUITests.m
-//  TestBiliUITests
+//  LetsGoTesUITests.m
+//  LetsGoTesUITests
 //
 //  Created by 花泽真菜 on 2020/10/21.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface TestBiliUITests : XCTestCase
+@interface LetsGoTesUITests : XCTestCase
 
 @end
 
-@implementation TestBiliUITests
+@implementation LetsGoTesUITests
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
