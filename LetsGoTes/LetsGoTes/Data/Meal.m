@@ -8,13 +8,14 @@
 #import "Meal.h"
 
 @implementation Meal
-- (void)initWithName:(NSString *)name andImage:(UIImage *)image andRating:(int)rating {
-    if (!name || rating < 0) {
-        return;
+- (instancetype)initWithName:(NSString *)name andImage:(UIImage *)image andRating:(int)rating {
+    if (name == nil || rating < 0) {
+        return nil;
     }
     self.name = name;
     self.image = image;
     self.rating = rating;
+    return self;
 }
 
 @end

@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) UIImage* image;
 @property (nonatomic) int rating;
 
-- (void) initWithName: (NSString*) name
+- (instancetype) initWithName: (NSString*) name
              andImage: (UIImage*) image
             andRating: (int) rating;
 @end
