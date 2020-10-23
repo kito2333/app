@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C47FF792541759100E84D6A /* RatingStar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C47FF782541759100E84D6A /* RatingStar.m */; };
+		2C69484A2542AF6F006B44CF /* Meal.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6948492542AF6F006B44CF /* Meal.m */; };
 		AA76D51C25400B2800A83515 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA76D51B25400B2800A83515 /* AppDelegate.m */; };
 		AA76D51F25400B2800A83515 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA76D51E25400B2800A83515 /* SceneDelegate.m */; };
 		AA76D52225400B2800A83515 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA76D52125400B2800A83515 /* ViewController.m */; };
@@ -36,6 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C47FF772541759100E84D6A /* RatingStar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RatingStar.h; sourceTree = "<group>"; };
+		2C47FF782541759100E84D6A /* RatingStar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RatingStar.m; sourceTree = "<group>"; };
+		2C6948482542AF6F006B44CF /* Meal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Meal.h; sourceTree = "<group>"; };
+		2C6948492542AF6F006B44CF /* Meal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Meal.m; sourceTree = "<group>"; };
 		AA76D51725400B2800A83515 /* LetsGoTes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LetsGoTes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA76D51A25400B2800A83515 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AA76D51B25400B2800A83515 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -81,6 +87,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C47FF762541757200E84D6A /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				2C47FF772541759100E84D6A /* RatingStar.h */,
+				2C47FF782541759100E84D6A /* RatingStar.m */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		2C69483E2542AE98006B44CF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				2C6948482542AF6F006B44CF /* Meal.h */,
+				2C6948492542AF6F006B44CF /* Meal.m */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		AA76D50E25400B2800A83515 = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +128,8 @@
 		AA76D51925400B2800A83515 /* LetsGoTes */ = {
 			isa = PBXGroup;
 			children = (
+				2C69483E2542AE98006B44CF /* Data */,
+				2C47FF762541757200E84D6A /* UI */,
 				AA76D51A25400B2800A83515 /* AppDelegate.h */,
 				AA76D51B25400B2800A83515 /* AppDelegate.m */,
 				AA76D51D25400B2800A83515 /* SceneDelegate.h */,
@@ -270,6 +296,8 @@
 				AA76D51C25400B2800A83515 /* AppDelegate.m in Sources */,
 				AA76D52D25400B2800A83515 /* main.m in Sources */,
 				AA76D51F25400B2800A83515 /* SceneDelegate.m in Sources */,
+				2C69484A2542AF6F006B44CF /* Meal.m in Sources */,
+				2C47FF792541759100E84D6A /* RatingStar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +472,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3YBGBD28J6;
 				INFOPLIST_FILE = LetsGoTes/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -462,6 +491,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3YBGBD28J6;
 				INFOPLIST_FILE = LetsGoTes/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
