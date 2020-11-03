@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA96395225467F7E004AA620 /* HeaderHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA96395125467F7E004AA620 /* HeaderHomeVC.m */; };
 		AAB2A722254671EA0038AF7D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2A721254671EA0038AF7D /* AppDelegate.m */; };
 		AAB2A725254671EA0038AF7D /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2A724254671EA0038AF7D /* SceneDelegate.m */; };
 		AAB2A728254671EA0038AF7D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2A727254671EA0038AF7D /* ViewController.m */; };
@@ -18,6 +17,10 @@
 		AAB2A73D254671EC0038AF7D /* LetsGoSNTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2A73C254671EC0038AF7D /* LetsGoSNTests.m */; };
 		AAB2A748254671EC0038AF7D /* LetsGoSNUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2A747254671EC0038AF7D /* LetsGoSNUITests.m */; };
 		AAB2A75E2546745C0038AF7D /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2A75D2546745C0038AF7D /* MyViewController.m */; };
+		AABFFADE2551591F00835B20 /* HomeRecommendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFADD2551591F00835B20 /* HomeRecommendVC.m */; };
+		AABFFAE7255159CA00835B20 /* HomeRecommendVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFAE6255159CA00835B20 /* HomeRecommendVCCell.m */; };
+		AABFFAED2551624800835B20 /* HomeLiveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFAEC2551624800835B20 /* HomeLiveVC.m */; };
+		AABFFAFD2551636400835B20 /* HomeHotVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFAFC2551636400835B20 /* HomeHotVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,8 +41,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AA96395025467F7E004AA620 /* HeaderHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeaderHomeVC.h; sourceTree = "<group>"; };
-		AA96395125467F7E004AA620 /* HeaderHomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeaderHomeVC.m; sourceTree = "<group>"; };
 		AAB2A71D254671EA0038AF7D /* LetsGoSN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LetsGoSN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB2A720254671EA0038AF7D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AAB2A721254671EA0038AF7D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -60,6 +61,14 @@
 		AAB2A749254671EC0038AF7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAB2A75C2546745C0038AF7D /* MyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
 		AAB2A75D2546745C0038AF7D /* MyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
+		AABFFADC2551591F00835B20 /* HomeRecommendVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeRecommendVC.h; sourceTree = "<group>"; };
+		AABFFADD2551591F00835B20 /* HomeRecommendVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeRecommendVC.m; sourceTree = "<group>"; };
+		AABFFAE5255159CA00835B20 /* HomeRecommendVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeRecommendVCCell.h; sourceTree = "<group>"; };
+		AABFFAE6255159CA00835B20 /* HomeRecommendVCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeRecommendVCCell.m; sourceTree = "<group>"; };
+		AABFFAEB2551624800835B20 /* HomeLiveVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeLiveVC.h; sourceTree = "<group>"; };
+		AABFFAEC2551624800835B20 /* HomeLiveVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeLiveVC.m; sourceTree = "<group>"; };
+		AABFFAFB2551636400835B20 /* HomeHotVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeHotVC.h; sourceTree = "<group>"; };
+		AABFFAFC2551636400835B20 /* HomeHotVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeHotVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,8 +99,8 @@
 		AA96394F25467F41004AA620 /* Navagation */ = {
 			isa = PBXGroup;
 			children = (
-				AA96395025467F7E004AA620 /* HeaderHomeVC.h */,
-				AA96395125467F7E004AA620 /* HeaderHomeVC.m */,
+				AABFFAFA2551632300835B20 /* ChannelVC */,
+				AABFFADB255158A800835B20 /* HomeVC */,
 			);
 			path = Navagation;
 			sourceTree = "<group>";
@@ -156,11 +165,49 @@
 		AAB2A7582546722E0038AF7D /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				AABFFAE32551599800835B20 /* Data */,
 				AA96394F25467F41004AA620 /* Navagation */,
 				AAB2A75C2546745C0038AF7D /* MyViewController.h */,
 				AAB2A75D2546745C0038AF7D /* MyViewController.m */,
 			);
 			path = Pages;
+			sourceTree = "<group>";
+		};
+		AABFFADB255158A800835B20 /* HomeVC */ = {
+			isa = PBXGroup;
+			children = (
+				AABFFADC2551591F00835B20 /* HomeRecommendVC.h */,
+				AABFFADD2551591F00835B20 /* HomeRecommendVC.m */,
+				AABFFAEB2551624800835B20 /* HomeLiveVC.h */,
+				AABFFAEC2551624800835B20 /* HomeLiveVC.m */,
+				AABFFAFB2551636400835B20 /* HomeHotVC.h */,
+				AABFFAFC2551636400835B20 /* HomeHotVC.m */,
+			);
+			path = HomeVC;
+			sourceTree = "<group>";
+		};
+		AABFFAE32551599800835B20 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				AABFFAE4255159A100835B20 /* HomeVCData */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		AABFFAE4255159A100835B20 /* HomeVCData */ = {
+			isa = PBXGroup;
+			children = (
+				AABFFAE5255159CA00835B20 /* HomeRecommendVCCell.h */,
+				AABFFAE6255159CA00835B20 /* HomeRecommendVCCell.m */,
+			);
+			path = HomeVCData;
+			sourceTree = "<group>";
+		};
+		AABFFAFA2551632300835B20 /* ChannelVC */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ChannelVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,12 +339,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA96395225467F7E004AA620 /* HeaderHomeVC.m in Sources */,
 				AAB2A728254671EA0038AF7D /* ViewController.m in Sources */,
 				AAB2A722254671EA0038AF7D /* AppDelegate.m in Sources */,
+				AABFFAED2551624800835B20 /* HomeLiveVC.m in Sources */,
+				AABFFADE2551591F00835B20 /* HomeRecommendVC.m in Sources */,
+				AABFFAE7255159CA00835B20 /* HomeRecommendVCCell.m in Sources */,
 				AAB2A733254671EC0038AF7D /* main.m in Sources */,
 				AAB2A725254671EA0038AF7D /* SceneDelegate.m in Sources */,
 				AAB2A75E2546745C0038AF7D /* MyViewController.m in Sources */,
+				AABFFAFD2551636400835B20 /* HomeHotVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

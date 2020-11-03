@@ -1,17 +1,17 @@
 //
-//  HeaderHomeVC.m
+//  HomeLiveVC.m
 //  LetsGoSN
 //
-//  Created by 花泽真菜 on 2020/10/26.
+//  Created by 花泽真菜 on 2020/11/3.
 //
 
-#import "HeaderHomeVC.h"
+#import "HomeLiveVC.h"
 
-@interface HeaderHomeVC ()
+@interface HomeLiveVC ()
 
 @end
 
-@implementation HeaderHomeVC
+@implementation HomeLiveVC
 
 //MARK: init
 - (void)viewDidLoad {

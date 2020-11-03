@@ -6,10 +6,18 @@
 //
 
 #import "MyViewController.h"
-#import "HeaderHomeVC.h"
+#import "HomeLiveVC.h"
+#import "HomeRecommendVC.h"
+#import "HomeHotVC.h"
 
 #define WIDTH self.view.frame.size.width
 #define HEIGHT self.view.frame.size.height
+
+static const int homeVCTopPadding = 50;
+static const int homeVCBottomPadding = 180;
+static const int homeRecommendVCLineSpacing = 5;
+static const int homeRecommendVCInterItemSpacing = 10;
+static const int homeRecommendVCCellHeight = 100;
 
 @interface MyViewController ()
 
@@ -21,6 +29,12 @@
 @property (nonatomic) UIButton *headMBtn;
 @property (nonatomic) UIButton *headRBtn;
 
+@property (nonatomic) UIView *bottomView;
+@property (nonatomic) UIButton *bottomFirstBtn;
+@property (nonatomic) UIButton *bottomSecondBtn;
+@property (nonatomic) UIButton *bottomThirdBtn;
+@property (nonatomic) UIButton *bottomForthBtn;
+@property (nonatomic) UIButton *bottomFifthBtn;
 @end
 
 @implementation MyViewController
@@ -36,10 +50,8 @@
     self.view.backgroundColor = [UIColor systemPinkColor];
     
     [self initHeadView];
-    
-    HeaderHomeVC *headHome = [[HeaderHomeVC alloc] init];
-    headHome.view.frame = CGRectMake(0, _headView.frame.origin.y + 50, WIDTH, HEIGHT - 130 - _barHeight);
-    _currentVC = headHome;
+    [self initBottomView];
+    [self initHomeRecommendVC];
     
     [self addChildViewController:_currentVC];
     [self.view addSubview:_currentVC.view];
@@ -56,23 +68,73 @@
         }
     }
     
-    _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 50, WIDTH, 150)];
+    _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 50, WIDTH, 50)];
     _headView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:_headView];
     
-    float headTitleWidth = 60;
-    _headLBtn = [self buttonWithFrame:CGRectMake(WIDTH / 2 - headTitleWidth * 2, 0, headTitleWidth, 50) andTile:@"同城"];
-    [_headLBtn addTarget:self action:@selector(goHeadView) forControlEvents: UIControlEventTouchUpInside];
+    float headButtonWidth = 60;
+    float headButtonHeight = 50;
+    _headLBtn = [self buttonWithFrame:CGRectMake(WIDTH / 2 - headButtonWidth * 2, 0, headButtonWidth, headButtonHeight) andTile:@"直播"];
+    [_headLBtn addTarget:self action:@selector(goLiveView) forControlEvents: UIControlEventTouchUpInside];
     [_headView addSubview:_headLBtn];
     
-    _headMBtn = [self buttonWithFrame:CGRectMake(WIDTH / 2 - headTitleWidth / 2, 0, headTitleWidth, 50) andTile:@"关注"];
-    // addTarget
+    _headMBtn = [self buttonWithFrame:CGRectMake(WIDTH / 2 - headButtonWidth / 2, 0, headButtonWidth, headButtonHeight) andTile:@"推荐"];
+    [_headMBtn addTarget:self action:@selector(goRecommendView) forControlEvents:UIControlEventTouchUpInside];
     [_headView addSubview:_headMBtn];
     
     
-    _headRBtn = [self buttonWithFrame:CGRectMake(WIDTH / 2 + headTitleWidth, 0, headTitleWidth, 50) andTile:@"推荐"];
-    // addTarget
+    _headRBtn = [self buttonWithFrame:CGRectMake(WIDTH / 2 + headButtonWidth, 0, headButtonWidth, headButtonHeight) andTile:@"热门"];
+    [_headRBtn addTarget:self action:@selector(goHotView) forControlEvents:UIControlEventTouchUpInside];
     [_headView addSubview:_headRBtn];
+}
+
+- (void) initBottomView {
+    _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, HEIGHT - 80, WIDTH, 50)];
+    _bottomView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview: _bottomView];
+    
+    float bottomButtonWidth = 80 > WIDTH / 6 ? 80 : WIDTH / 6;
+    float bottomButtonHeight = 50;
+    _bottomFirstBtn = [self buttonWithFrame:CGRectMake(WIDTH / 6 - bottomButtonWidth / 2, 0, bottomButtonWidth, bottomButtonHeight) andTile:@"首页"];
+    [_bottomView addSubview: _bottomFirstBtn];
+    
+    _bottomSecondBtn = [self buttonWithFrame:CGRectMake(WIDTH / 3 - bottomButtonWidth / 2, 0, bottomButtonWidth, bottomButtonHeight) andTile:@"频道"];
+    [_bottomView addSubview: _bottomSecondBtn];
+    
+    _bottomThirdBtn = [self buttonWithFrame:CGRectMake(WIDTH / 2 - bottomButtonWidth / 2, 0, bottomButtonWidth, bottomButtonHeight) andTile:@"频道"];
+    [_bottomView addSubview: _bottomThirdBtn];
+    
+    _bottomForthBtn = [self buttonWithFrame:CGRectMake(WIDTH * 2 / 3 - bottomButtonWidth / 2, 0, bottomButtonWidth, bottomButtonHeight) andTile:@"会员购"];
+    [_bottomForthBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+    [_bottomView addSubview: _bottomForthBtn];
+    
+    _bottomFifthBtn = [self buttonWithFrame:CGRectMake(WIDTH * 5 / 6 - bottomButtonWidth / 2, 0, bottomButtonWidth, bottomButtonHeight) andTile:@"我的"];
+    [_bottomView addSubview: _bottomFifthBtn];
+    
+}
+
+- (void) initHomeRecommendVC {
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setMinimumLineSpacing: homeRecommendVCLineSpacing];
+    [flowLayout setMinimumInteritemSpacing:homeRecommendVCInterItemSpacing];
+    [flowLayout setItemSize:CGSizeMake((WIDTH - homeRecommendVCInterItemSpacing) / 2, homeRecommendVCCellHeight)];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    
+    HomeRecommendVC *homeRecommendVC = [[HomeRecommendVC alloc] initWithCollectionViewLayout:flowLayout];
+    [homeRecommendVC.view setFrame:CGRectMake(0, _headView.frame.origin.y + homeVCTopPadding, WIDTH, HEIGHT - homeVCBottomPadding - _barHeight)];
+    _currentVC = homeRecommendVC;
+}
+
+- (void) initHomeLiveVC {
+    HomeLiveVC *homeLiveVC = [[HomeLiveVC alloc] init];
+    [homeLiveVC.view setFrame: CGRectMake(0, _headView.frame.origin.y + homeVCTopPadding, WIDTH, HEIGHT - homeVCBottomPadding - _barHeight)];
+    _currentVC = homeLiveVC;
+}
+
+- (void) initHomeHotVC {
+    HomeHotVC *homeHotVC = [[HomeHotVC alloc] init];
+    [homeHotVC.view setFrame:CGRectMake(0, _headView.frame.origin.y + homeVCTopPadding, WIDTH, HEIGHT - homeVCBottomPadding - _barHeight)];
+    _currentVC = homeHotVC;
 }
 
 - (UIButton *) buttonWithFrame:(CGRect) frame andTile: (NSString* )title {
@@ -82,15 +144,34 @@
     return btn;
 }
 
-- (void) goHeadView {
+
+- (void) goRecommendView {
+    [self removeCurrentView];
+    [self initHomeRecommendVC];
+    [self addCurrentView];
+}
+
+- (void) goLiveView {
+    [self removeCurrentView];
+    [self initHomeLiveVC];
+    [self addCurrentView];
+}
+
+- (void) goHotView {
+    [self removeCurrentView];
+    [self initHomeHotVC];
+    [self addCurrentView];
+}
+
+#pragma mark - UpdateView
+
+- (void) removeCurrentView {
     [_currentVC willMoveToParentViewController:nil];
     [_currentVC.view removeFromSuperview];
     [_currentVC removeFromParentViewController];
-    
-    HeaderHomeVC *headHVC = [[HeaderHomeVC alloc] init];
-    headHVC.view.frame = CGRectMake(0, _headView.frame.origin.y + 50, WIDTH, HEIGHT - 130 - _barHeight);
-    _currentVC = headHVC;
-    
+}
+
+- (void) addCurrentView {
     [self addChildViewController:_currentVC];
     [self.view addSubview:_currentVC.view];
     [_currentVC didMoveToParentViewController:self];
