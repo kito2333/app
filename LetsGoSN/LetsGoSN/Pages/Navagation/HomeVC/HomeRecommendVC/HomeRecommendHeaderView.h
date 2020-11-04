@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeRecommendHeaderView : UICollectionReusableView
 
+@property (nonatomic) UIImageView *imageView;
+
 @end
 
 NS_ASSUME_NONNULL_END

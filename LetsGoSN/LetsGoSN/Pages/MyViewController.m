@@ -25,6 +25,7 @@ static const int homeRecommendVCCellHeight = 100;
 
 @property (nonatomic) float barHeight;
 @property (nonatomic) UIViewController *currentVC;
+@property (nonatomic) UIButton *backButton;
 
 @property (nonatomic) UIView *headView;
 @property (nonatomic) UIButton *headLBtn;
@@ -51,24 +52,65 @@ static const int homeRecommendVCCellHeight = 100;
 - (void) initView {
     self.view.backgroundColor = [UIColor systemPinkColor];
     
-    [self initHeadView];
+    [self initHomeTopView];
     [self initBottomView];
     [self initHomeRecommendVC];
-    
-    [self addChildViewController:_currentVC];
-    [self.view addSubview:_currentVC.view];
-    [_currentVC didMoveToParentViewController:self];
+    [self addCurrentView];
 }
 
-- (void) initHeadView {
-    [self setModalPresentationStyle:UIModalPresentationFullScreen];
+- (void) initBottomView {
+    _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, HEIGHT - 80, WIDTH, 50)];
+    _bottomView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview: _bottomView];
     
+    float bottomButtonWidth = 80 > WIDTH / 6 ? 80 : WIDTH / 6;
+    float bottomButtonHeight = 50;
+    _bottomFirstBtn = [self buttonWithFrame:CGRectMake(WIDTH / 6 - bottomButtonWidth / 2, 0, bottomButtonWidth, bottomButtonHeight) andTile:@"首页"];
+    [_bottomFirstBtn addTarget:self action:@selector(goHomeVC) forControlEvents:UIControlEventTouchUpInside];
+    [_bottomView addSubview: _bottomFirstBtn];
+    
+    _bottomSecondBtn = [self buttonWithFrame:CGRectMake(WIDTH / 3 - bottomButtonWidth / 2, 0, bottomButtonWidth, bottomButtonHeight) andTile:@"频道"];
+    [_bottomSecondBtn addTarget:self action:@selector(goChannelVC) forControlEvents:UIControlEventTouchUpInside];
+    [_bottomView addSubview: _bottomSecondBtn];
+    
+    _bottomThirdBtn = [self buttonWithFrame:CGRectMake(WIDTH / 2 - bottomButtonWidth / 2, 0, bottomButtonWidth, bottomButtonHeight) andTile:@"频道"];
+    [_bottomView addSubview: _bottomThirdBtn];
+    
+    _bottomForthBtn = [self buttonWithFrame:CGRectMake(WIDTH * 2 / 3 - bottomButtonWidth / 2, 0, bottomButtonWidth, bottomButtonHeight) andTile:@"会员购"];
+    [_bottomForthBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+    [_bottomView addSubview: _bottomForthBtn];
+    
+    _bottomFifthBtn = [self buttonWithFrame:CGRectMake(WIDTH * 5 / 6 - bottomButtonWidth / 2, 0, bottomButtonWidth, bottomButtonHeight) andTile:@"我的"];
+    [_bottomView addSubview: _bottomFifthBtn];
+    
+}
+
+- (void) initBackButton {
+    _backButton = [self buttonWithFrame:CGRectMake(0, 50, 50, 50) andTile:@"Back"];
+    [_backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_backButton addTarget:self action:@selector(goHomeVC) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_backButton];
+}
+
+- (UIButton *) buttonWithFrame:(CGRect) frame andTile: (NSString* )title {
+    UIButton *btn = [[UIButton alloc] initWithFrame: frame];
+    [btn setTitle:title forState:UIControlStateNormal];
+    [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:18]];
+    return btn;
+}
+
+#pragma mark - navigation of Home
+
+- (void) initHomeTopView {
+    [self setModalPresentationStyle:UIModalPresentationFullScreen];
+   
+    /*
     for (UIWindow *window in [UIApplication sharedApplication].windows) {
         if (window.isKeyWindow) {
             _barHeight = window.windowScene.statusBarManager.statusBarFrame.size.height;
             break;
         }
-    }
+    } */
     
     _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 50, WIDTH, 50)];
     _headView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -90,31 +132,6 @@ static const int homeRecommendVCCellHeight = 100;
     [_headView addSubview:_headRBtn];
 }
 
-- (void) initBottomView {
-    _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, HEIGHT - 80, WIDTH, 50)];
-    _bottomView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview: _bottomView];
-    
-    float bottomButtonWidth = 80 > WIDTH / 6 ? 80 : WIDTH / 6;
-    float bottomButtonHeight = 50;
-    _bottomFirstBtn = [self buttonWithFrame:CGRectMake(WIDTH / 6 - bottomButtonWidth / 2, 0, bottomButtonWidth, bottomButtonHeight) andTile:@"首页"];
-    [_bottomView addSubview: _bottomFirstBtn];
-    
-    _bottomSecondBtn = [self buttonWithFrame:CGRectMake(WIDTH / 3 - bottomButtonWidth / 2, 0, bottomButtonWidth, bottomButtonHeight) andTile:@"频道"];
-    [_bottomView addSubview: _bottomSecondBtn];
-    
-    _bottomThirdBtn = [self buttonWithFrame:CGRectMake(WIDTH / 2 - bottomButtonWidth / 2, 0, bottomButtonWidth, bottomButtonHeight) andTile:@"频道"];
-    [_bottomView addSubview: _bottomThirdBtn];
-    
-    _bottomForthBtn = [self buttonWithFrame:CGRectMake(WIDTH * 2 / 3 - bottomButtonWidth / 2, 0, bottomButtonWidth, bottomButtonHeight) andTile:@"会员购"];
-    [_bottomForthBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-    [_bottomView addSubview: _bottomForthBtn];
-    
-    _bottomFifthBtn = [self buttonWithFrame:CGRectMake(WIDTH * 5 / 6 - bottomButtonWidth / 2, 0, bottomButtonWidth, bottomButtonHeight) andTile:@"我的"];
-    [_bottomView addSubview: _bottomFifthBtn];
-    
-}
-
 - (void) initHomeRecommendVC {
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     float flowLayoutLeftPadding = 5;
@@ -128,6 +145,7 @@ static const int homeRecommendVCCellHeight = 100;
     
     HomeRecommendVC *homeRecommendVC = [[HomeRecommendVC alloc] initWithCollectionViewLayout:flowLayout];
     [homeRecommendVC.view setFrame:CGRectMake(0, _headView.frame.origin.y + homeVCTopPadding, WIDTH, HEIGHT - homeVCBottomPadding - _barHeight)];
+    [homeRecommendVC setParentVC:self];
     _currentVC = homeRecommendVC;
 }
 
@@ -143,13 +161,18 @@ static const int homeRecommendVCCellHeight = 100;
     _currentVC = homeHotVC;
 }
 
-- (UIButton *) buttonWithFrame:(CGRect) frame andTile: (NSString* )title {
-    UIButton *btn = [[UIButton alloc] initWithFrame: frame];
-    [btn setTitle:title forState:UIControlStateNormal];
-    [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:18]];
-    return btn;
+- (void) goHomeVC {
+    if ([self isHomeVC]) {
+        return;
+    }
+    [self removeCurrentView];
+    [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self initHomeTopView];
+    [self initBottomView];
+    [self initHomeRecommendVC];
+    [self addCurrentView];
+    
 }
-
 
 - (void) goRecommendView {
     [self removeCurrentView];
@@ -167,6 +190,88 @@ static const int homeRecommendVCCellHeight = 100;
     [self removeCurrentView];
     [self initHomeHotVC];
     [self addCurrentView];
+}
+
+- (void) changeCurrentVC:(id)newVC {
+    if ([newVC isKindOfClass:[HomeRecommendClickVC class]]) {
+        _currentVC = newVC;
+    }
+}
+
+#pragma mark - navigation of Channel
+
+-(void) initChannelTopView {
+    [self setModalPresentationStyle:UIModalPresentationFullScreen];
+    
+    _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 50, WIDTH, 50)];
+    _headView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:_headView];
+    
+    float headButtonWidth = 60;
+    float headButtonHeight = 50;
+    _headLBtn = [self buttonWithFrame:CGRectMake(WIDTH / 3 - headButtonWidth / 2, 0, headButtonWidth, headButtonHeight) andTile:@"频道"];
+    [_headLBtn addTarget:self action:@selector(goChannelView) forControlEvents: UIControlEventTouchUpInside];
+    [_headView addSubview:_headLBtn];
+    
+    _headRBtn = [self buttonWithFrame:CGRectMake(WIDTH * 2 / 3 - headButtonWidth / 2, 0, headButtonWidth, headButtonHeight) andTile:@"分区"];
+    [_headRBtn addTarget:self action:@selector(goZoneView) forControlEvents:UIControlEventTouchUpInside];
+    [_headView addSubview:_headRBtn];
+}
+
+- (void) initChannelHomeVC {
+    ChannelHomeVC *channelVC = [[ChannelHomeVC alloc] init];
+    [channelVC.view setFrame:CGRectMake(0, _headView.frame.origin.y + homeVCTopPadding, WIDTH, HEIGHT - homeVCBottomPadding - _barHeight)];
+    _currentVC = channelVC;
+}
+
+- (void) initChannelZoneVC {
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    ChannelZoneVC *zoneVC = [[ChannelZoneVC alloc] initWithCollectionViewLayout:flowLayout];
+    [zoneVC.view setFrame:CGRectMake(0, _headView.frame.origin.y + homeVCTopPadding, WIDTH, HEIGHT - homeVCBottomPadding - _barHeight)];
+    _currentVC = zoneVC;
+}
+
+- (void) goChannelVC {
+    if ([self isChannelVC]) {
+        return;
+    }
+    [self removeCurrentView];
+    [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self initChannelTopView];
+    [self initBottomView];
+    [self initChannelHomeVC];
+    [self addCurrentView];
+}
+
+- (void) goChannelView {
+    [self removeCurrentView];
+    [self initChannelHomeVC];
+    [self addCurrentView];
+}
+
+- (void) goZoneView {
+    [self removeCurrentView];
+    [self initChannelZoneVC];
+    [self addCurrentView];
+}
+
+#pragma mark -judge function
+
+- (BOOL) isHomeVC {
+    if ([_currentVC isKindOfClass: [HomeRecommendVC class]] ||
+        [_currentVC isKindOfClass: [HomeLiveVC class]] ||
+        [_currentVC isKindOfClass: [HomeHotVC class]]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL) isChannelVC {
+    if ([_currentVC isKindOfClass: [ChannelHomeVC class]] ||
+        [_currentVC isKindOfClass: [ChannelZoneVC class]]) {
+        return YES;
+    }
+    return NO;
 }
 
 #pragma mark - UpdateView

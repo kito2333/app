@@ -10,7 +10,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MyViewController : UIViewController
-
+- (void) initBackButton;
+- (void) changeCurrentVC:(id)newVC;
+- (void) removeCurrentView;
+- (void) addCurrentView;
 @end
 
 NS_ASSUME_NONNULL_END

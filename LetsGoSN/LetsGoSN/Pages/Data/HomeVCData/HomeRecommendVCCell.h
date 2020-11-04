@@ -6,13 +6,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HomeRecommendVCData.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeRecommendVCCell : UICollectionViewCell
 
-@property (nonatomic) UIImageView* imagView;
+@property (nonatomic) UIImageView* imageView;
+@property (nonatomic) UILabel* label;
 
+- (void) setData: (HomeRecommendVCData *)data;
 @end
 
 NS_ASSUME_NONNULL_END

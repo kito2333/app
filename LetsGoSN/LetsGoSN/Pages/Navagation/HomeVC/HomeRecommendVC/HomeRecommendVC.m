@@ -6,7 +6,6 @@
 //
 
 #import "HomeRecommendVC.h"
-#import "HomeRecommendHeaderView.h"
 
 static const int headerViewHeight = 200;
 @interface HomeRecommendVC ()
@@ -34,6 +33,22 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView setDelegate:self];
     [self.collectionView registerClass:[HomeRecommendVCCell class] forCellWithReuseIdentifier:reuseIdentifier];
     [self.collectionView registerClass:[HomeRecommendHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HomeRecommendHeaderView"];
+}
+
+- (NSMutableArray *)dataList {
+    if (!_dataList) {
+        _dataList = [NSMutableArray array];
+        for (int i = 0; i < 10; i++) {
+            UIImage *img = [UIImage imageNamed:@"ic_wuliannan.png"];
+            HomeRecommendVCData *data = [[HomeRecommendVCData alloc] initWithImage: img andText: @"2233"];
+            [_dataList addObject:data];
+        }
+    }
+    return _dataList;
+}
+
+- (void) setParentVC:(MyViewController *)parentVC {
+    _parentVC = parentVC;
 }
 
 /*
@@ -82,31 +97,53 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 16;
+    return self.dataList.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     HomeRecommendVCCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    [cell setBackgroundColor:[UIColor whiteColor]];
+    HomeRecommendVCData *data = self.dataList[indexPath.item];
+    [cell setData: data];
     return cell;
 }
 
 #pragma mark <UICollectionViewDelegate>
 
-/*
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    HomeRecommendVCCell *cell = (HomeRecommendVCCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [cell setBackgroundColor:[UIColor redColor]];
+    [self goClickVCWithCell:cell];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    HomeRecommendVCCell *cell = (HomeRecommendVCCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [cell setBackgroundColor:[UIColor whiteColor]];
+}
 // Uncomment this method to specify if the specified item should be highlighted during tracking
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
 	return YES;
 }
-*/
 
-/*
-// Uncomment this method to specify if the specified item should be selected
+
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
-*/
+
+- (void) goClickVCWithCell: (HomeRecommendVCCell *) cell {
+    if (self.parentVC != nil) {
+        [self.parentVC removeCurrentView];
+        [self.parentVC.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        
+        HomeRecommendClickVC *newVC = [[HomeRecommendClickVC alloc] init];
+        [newVC.view setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+        [newVC setImage:cell.imageView.image AndText:cell.label.text];
+        [self.parentVC changeCurrentVC:newVC];
+        [self.parentVC addCurrentView];
+        [self.parentVC initBackButton];
+    }
+
+}
 
 /*
 // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item

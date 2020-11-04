@@ -25,6 +25,8 @@
 		AABFFB122552568B00835B20 /* ChannelHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFB112552568B00835B20 /* ChannelHomeVC.m */; };
 		AABFFB182552574F00835B20 /* ChannelZoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFB172552574F00835B20 /* ChannelZoneVC.m */; };
 		AABFFB1E2552579000835B20 /* ChannelZoneVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFB1D2552579000835B20 /* ChannelZoneVCCell.m */; };
+		AABFFB2825528E2C00835B20 /* HomeRecommendVCData.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFB2725528E2C00835B20 /* HomeRecommendVCData.m */; };
+		AABFFB2F2552A72000835B20 /* HomeRecommendClickVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFB2E2552A72000835B20 /* HomeRecommendClickVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,10 @@
 		AABFFB172552574F00835B20 /* ChannelZoneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChannelZoneVC.m; sourceTree = "<group>"; };
 		AABFFB1C2552579000835B20 /* ChannelZoneVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChannelZoneVCCell.h; sourceTree = "<group>"; };
 		AABFFB1D2552579000835B20 /* ChannelZoneVCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChannelZoneVCCell.m; sourceTree = "<group>"; };
+		AABFFB2625528E2C00835B20 /* HomeRecommendVCData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeRecommendVCData.h; sourceTree = "<group>"; };
+		AABFFB2725528E2C00835B20 /* HomeRecommendVCData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeRecommendVCData.m; sourceTree = "<group>"; };
+		AABFFB2D2552A72000835B20 /* HomeRecommendClickVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeRecommendClickVC.h; sourceTree = "<group>"; };
+		AABFFB2E2552A72000835B20 /* HomeRecommendClickVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeRecommendClickVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,14 +194,11 @@
 		AABFFADB255158A800835B20 /* HomeVC */ = {
 			isa = PBXGroup;
 			children = (
-				AABFFADC2551591F00835B20 /* HomeRecommendVC.h */,
-				AABFFADD2551591F00835B20 /* HomeRecommendVC.m */,
+				AABFFB2C2552A6F500835B20 /* HomeRecommendVC */,
 				AABFFAEB2551624800835B20 /* HomeLiveVC.h */,
 				AABFFAEC2551624800835B20 /* HomeLiveVC.m */,
 				AABFFAFB2551636400835B20 /* HomeHotVC.h */,
 				AABFFAFC2551636400835B20 /* HomeHotVC.m */,
-				AABFFB0725524BCD00835B20 /* HomeRecommendHeaderView.h */,
-				AABFFB0825524BCD00835B20 /* HomeRecommendHeaderView.m */,
 			);
 			path = HomeVC;
 			sourceTree = "<group>";
@@ -214,6 +217,8 @@
 			children = (
 				AABFFAE5255159CA00835B20 /* HomeRecommendVCCell.h */,
 				AABFFAE6255159CA00835B20 /* HomeRecommendVCCell.m */,
+				AABFFB2625528E2C00835B20 /* HomeRecommendVCData.h */,
+				AABFFB2725528E2C00835B20 /* HomeRecommendVCData.m */,
 			);
 			path = HomeVCData;
 			sourceTree = "<group>";
@@ -236,6 +241,19 @@
 				AABFFB1C2552579000835B20 /* ChannelZoneVCCell.h */,
 			);
 			path = ChannelVCData;
+			sourceTree = "<group>";
+		};
+		AABFFB2C2552A6F500835B20 /* HomeRecommendVC */ = {
+			isa = PBXGroup;
+			children = (
+				AABFFB0825524BCD00835B20 /* HomeRecommendHeaderView.m */,
+				AABFFB0725524BCD00835B20 /* HomeRecommendHeaderView.h */,
+				AABFFADD2551591F00835B20 /* HomeRecommendVC.m */,
+				AABFFADC2551591F00835B20 /* HomeRecommendVC.h */,
+				AABFFB2D2552A72000835B20 /* HomeRecommendClickVC.h */,
+				AABFFB2E2552A72000835B20 /* HomeRecommendClickVC.m */,
+			);
+			path = HomeRecommendVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -373,6 +391,8 @@
 				AABFFAED2551624800835B20 /* HomeLiveVC.m in Sources */,
 				AABFFB182552574F00835B20 /* ChannelZoneVC.m in Sources */,
 				AABFFADE2551591F00835B20 /* HomeRecommendVC.m in Sources */,
+				AABFFB2825528E2C00835B20 /* HomeRecommendVCData.m in Sources */,
+				AABFFB2F2552A72000835B20 /* HomeRecommendClickVC.m in Sources */,
 				AABFFAE7255159CA00835B20 /* HomeRecommendVCCell.m in Sources */,
 				AABFFB0925524BCD00835B20 /* HomeRecommendHeaderView.m in Sources */,
 				AAB2A733254671EC0038AF7D /* main.m in Sources */,
