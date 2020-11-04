@@ -6,7 +6,9 @@
 //
 
 #import "HomeRecommendVC.h"
+#import "HomeRecommendHeaderView.h"
 
+static const int headerViewHeight = 200;
 @interface HomeRecommendVC ()
 
 @end
@@ -23,6 +25,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     // Register cell classes
     [self initView];
+//    [self initHeaderView];
 }
 
 - (void) initView {
@@ -30,6 +33,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView setDataSource:self];
     [self.collectionView setDelegate:self];
     [self.collectionView registerClass:[HomeRecommendVCCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [self.collectionView registerClass:[HomeRecommendHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HomeRecommendHeaderView"];
 }
 
 /*
@@ -41,6 +45,34 @@ static NSString * const reuseIdentifier = @"Cell";
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark <UICollectionViewHeader>
+- (void) initHeaderView {
+    //top left bottom right
+    float headViewActualHeight = 205;
+    float headViewLeftPadding = 5;
+    [self.collectionView setContentInset:UIEdgeInsetsMake(headViewActualHeight, 0, 0, 0)];
+    HomeRecommendHeaderView *headView = [[HomeRecommendHeaderView alloc] initWithFrame:CGRectMake(headViewLeftPadding, -headViewActualHeight, [UIScreen mainScreen].bounds.size.width - 2 * headViewLeftPadding, headerViewHeight)];
+    [self.collectionView addSubview:headView];
+    [self.collectionView setContentOffset:CGPointMake(0, -headViewActualHeight)];
+}
+
+
+- (CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    //根据layout旋转方向决定只有一个生效 当为垂直旋转时只有height生效
+    CGSize size = CGSizeMake([UIScreen mainScreen].bounds.size.width, headerViewHeight);
+    return size;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    UICollectionReusableView *reusableView = nil;
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        HomeRecommendHeaderView *headView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HomeRecommendHeaderView" forIndexPath:indexPath];
+        reusableView = headView;
+    }
+    return reusableView;
+}
+
 
 #pragma mark <UICollectionViewDataSource>
 

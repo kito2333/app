@@ -9,6 +9,8 @@
 #import "HomeLiveVC.h"
 #import "HomeRecommendVC.h"
 #import "HomeHotVC.h"
+#import "ChannelHomeVC.h"
+#import "ChannelZoneVC.h"
 
 #define WIDTH self.view.frame.size.width
 #define HEIGHT self.view.frame.size.height
@@ -115,9 +117,13 @@ static const int homeRecommendVCCellHeight = 100;
 
 - (void) initHomeRecommendVC {
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    float flowLayoutLeftPadding = 5;
+    float flowLayoutTopPadding = 10;
+    float flowLayoutBottomPadding = 10;
     [flowLayout setMinimumLineSpacing: homeRecommendVCLineSpacing];
     [flowLayout setMinimumInteritemSpacing:homeRecommendVCInterItemSpacing];
-    [flowLayout setItemSize:CGSizeMake((WIDTH - homeRecommendVCInterItemSpacing) / 2, homeRecommendVCCellHeight)];
+    [flowLayout setItemSize:CGSizeMake((WIDTH - homeRecommendVCInterItemSpacing - flowLayoutLeftPadding * 2) / 2, homeRecommendVCCellHeight)];
+    [flowLayout setSectionInset:UIEdgeInsetsMake(flowLayoutTopPadding, flowLayoutLeftPadding, flowLayoutBottomPadding, flowLayoutLeftPadding)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     
     HomeRecommendVC *homeRecommendVC = [[HomeRecommendVC alloc] initWithCollectionViewLayout:flowLayout];

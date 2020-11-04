@@ -21,6 +21,10 @@
 		AABFFAE7255159CA00835B20 /* HomeRecommendVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFAE6255159CA00835B20 /* HomeRecommendVCCell.m */; };
 		AABFFAED2551624800835B20 /* HomeLiveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFAEC2551624800835B20 /* HomeLiveVC.m */; };
 		AABFFAFD2551636400835B20 /* HomeHotVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFAFC2551636400835B20 /* HomeHotVC.m */; };
+		AABFFB0925524BCD00835B20 /* HomeRecommendHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFB0825524BCD00835B20 /* HomeRecommendHeaderView.m */; };
+		AABFFB122552568B00835B20 /* ChannelHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFB112552568B00835B20 /* ChannelHomeVC.m */; };
+		AABFFB182552574F00835B20 /* ChannelZoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFB172552574F00835B20 /* ChannelZoneVC.m */; };
+		AABFFB1E2552579000835B20 /* ChannelZoneVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFB1D2552579000835B20 /* ChannelZoneVCCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +73,14 @@
 		AABFFAEC2551624800835B20 /* HomeLiveVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeLiveVC.m; sourceTree = "<group>"; };
 		AABFFAFB2551636400835B20 /* HomeHotVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeHotVC.h; sourceTree = "<group>"; };
 		AABFFAFC2551636400835B20 /* HomeHotVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeHotVC.m; sourceTree = "<group>"; };
+		AABFFB0725524BCD00835B20 /* HomeRecommendHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeRecommendHeaderView.h; sourceTree = "<group>"; };
+		AABFFB0825524BCD00835B20 /* HomeRecommendHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeRecommendHeaderView.m; sourceTree = "<group>"; };
+		AABFFB102552568B00835B20 /* ChannelHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChannelHomeVC.h; sourceTree = "<group>"; };
+		AABFFB112552568B00835B20 /* ChannelHomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChannelHomeVC.m; sourceTree = "<group>"; };
+		AABFFB162552574F00835B20 /* ChannelZoneVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChannelZoneVC.h; sourceTree = "<group>"; };
+		AABFFB172552574F00835B20 /* ChannelZoneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChannelZoneVC.m; sourceTree = "<group>"; };
+		AABFFB1C2552579000835B20 /* ChannelZoneVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChannelZoneVCCell.h; sourceTree = "<group>"; };
+		AABFFB1D2552579000835B20 /* ChannelZoneVCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChannelZoneVCCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +194,8 @@
 				AABFFAEC2551624800835B20 /* HomeLiveVC.m */,
 				AABFFAFB2551636400835B20 /* HomeHotVC.h */,
 				AABFFAFC2551636400835B20 /* HomeHotVC.m */,
+				AABFFB0725524BCD00835B20 /* HomeRecommendHeaderView.h */,
+				AABFFB0825524BCD00835B20 /* HomeRecommendHeaderView.m */,
 			);
 			path = HomeVC;
 			sourceTree = "<group>";
@@ -189,6 +203,7 @@
 		AABFFAE32551599800835B20 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				AABFFB2225525A3800835B20 /* ChannelVCData */,
 				AABFFAE4255159A100835B20 /* HomeVCData */,
 			);
 			path = Data;
@@ -206,8 +221,21 @@
 		AABFFAFA2551632300835B20 /* ChannelVC */ = {
 			isa = PBXGroup;
 			children = (
+				AABFFB102552568B00835B20 /* ChannelHomeVC.h */,
+				AABFFB112552568B00835B20 /* ChannelHomeVC.m */,
+				AABFFB162552574F00835B20 /* ChannelZoneVC.h */,
+				AABFFB172552574F00835B20 /* ChannelZoneVC.m */,
 			);
 			path = ChannelVC;
+			sourceTree = "<group>";
+		};
+		AABFFB2225525A3800835B20 /* ChannelVCData */ = {
+			isa = PBXGroup;
+			children = (
+				AABFFB1D2552579000835B20 /* ChannelZoneVCCell.m */,
+				AABFFB1C2552579000835B20 /* ChannelZoneVCCell.h */,
+			);
+			path = ChannelVCData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,14 +367,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AABFFB122552568B00835B20 /* ChannelHomeVC.m in Sources */,
 				AAB2A728254671EA0038AF7D /* ViewController.m in Sources */,
 				AAB2A722254671EA0038AF7D /* AppDelegate.m in Sources */,
 				AABFFAED2551624800835B20 /* HomeLiveVC.m in Sources */,
+				AABFFB182552574F00835B20 /* ChannelZoneVC.m in Sources */,
 				AABFFADE2551591F00835B20 /* HomeRecommendVC.m in Sources */,
 				AABFFAE7255159CA00835B20 /* HomeRecommendVCCell.m in Sources */,
+				AABFFB0925524BCD00835B20 /* HomeRecommendHeaderView.m in Sources */,
 				AAB2A733254671EC0038AF7D /* main.m in Sources */,
 				AAB2A725254671EA0038AF7D /* SceneDelegate.m in Sources */,
 				AAB2A75E2546745C0038AF7D /* MyViewController.m in Sources */,
+				AABFFB1E2552579000835B20 /* ChannelZoneVCCell.m in Sources */,
 				AABFFAFD2551636400835B20 /* HomeHotVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
