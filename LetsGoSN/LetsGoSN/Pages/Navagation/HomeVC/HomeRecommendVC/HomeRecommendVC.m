@@ -8,6 +8,8 @@
 #import "HomeRecommendVC.h"
 
 static const int headerViewHeight = 200;
+static const int headerViewHorizonPadding = 5;
+static const int headerViewTopPadding = 10;
 @interface HomeRecommendVC ()
 
 @end
@@ -64,8 +66,8 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark <UICollectionViewHeader>
 - (void) initHeaderView {
     //top left bottom right
-    float headViewActualHeight = 205;
-    float headViewLeftPadding = 5;
+    float headViewActualHeight = headerViewHeight + headerViewTopPadding;
+    float headViewLeftPadding = headerViewHorizonPadding;
     [self.collectionView setContentInset:UIEdgeInsetsMake(headViewActualHeight, 0, 0, 0)];
     HomeRecommendHeaderView *headView = [[HomeRecommendHeaderView alloc] initWithFrame:CGRectMake(headViewLeftPadding, -headViewActualHeight, [UIScreen mainScreen].bounds.size.width - 2 * headViewLeftPadding, headerViewHeight)];
     [self.collectionView addSubview:headView];
@@ -83,6 +85,9 @@ static NSString * const reuseIdentifier = @"Cell";
     UICollectionReusableView *reusableView = nil;
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         HomeRecommendHeaderView *headView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HomeRecommendHeaderView" forIndexPath:indexPath];
+        float newWidth = [UIScreen mainScreen].bounds.size.width - 2 * headerViewHorizonPadding;
+        float newHeight = headerViewHeight - headerViewTopPadding;
+        [headView setFrame:CGRectMake(headerViewHorizonPadding, headerViewTopPadding, newWidth, newHeight)];
         reusableView = headView;
     }
     return reusableView;
@@ -120,7 +125,7 @@ static NSString * const reuseIdentifier = @"Cell";
     HomeRecommendVCCell *cell = (HomeRecommendVCCell *)[collectionView cellForItemAtIndexPath:indexPath];
     [cell setBackgroundColor:[UIColor whiteColor]];
 }
-// Uncomment this method to specify if the specified item should be highlighted during tracking
+
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
 	return YES;
 }
@@ -137,7 +142,7 @@ static NSString * const reuseIdentifier = @"Cell";
         
         HomeRecommendClickVC *newVC = [[HomeRecommendClickVC alloc] init];
         [newVC.view setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-        [newVC setImage:cell.imageView.image AndText:cell.label.text];
+        [newVC setImage:cell.imageView.image AndText:cell.title.text];
         [self.parentVC changeCurrentVC:newVC];
         [self.parentVC addCurrentView];
         [self.parentVC initBackButton];

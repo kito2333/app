@@ -17,9 +17,9 @@
 
 static const int homeVCTopPadding = 50;
 static const int homeVCBottomPadding = 180;
-static const int homeRecommendVCLineSpacing = 5;
+static const int homeRecommendVCLineSpacing = 10;
 static const int homeRecommendVCInterItemSpacing = 10;
-static const int homeRecommendVCCellHeight = 100;
+static const int homeRecommendVCCellHeight = 150;
 
 @interface MyViewController ()
 
@@ -50,7 +50,7 @@ static const int homeRecommendVCCellHeight = 100;
 }
 
 - (void) initView {
-    self.view.backgroundColor = [UIColor systemPinkColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     [self initHomeTopView];
     [self initBottomView];
@@ -67,6 +67,7 @@ static const int homeRecommendVCCellHeight = 100;
     float bottomButtonHeight = 50;
     _bottomFirstBtn = [self buttonWithFrame:CGRectMake(WIDTH / 6 - bottomButtonWidth / 2, 0, bottomButtonWidth, bottomButtonHeight) andTile:@"首页"];
     [_bottomFirstBtn addTarget:self action:@selector(goHomeVC) forControlEvents:UIControlEventTouchUpInside];
+    [_bottomFirstBtn setSelected:YES];
     [_bottomView addSubview: _bottomFirstBtn];
     
     _bottomSecondBtn = [self buttonWithFrame:CGRectMake(WIDTH / 3 - bottomButtonWidth / 2, 0, bottomButtonWidth, bottomButtonHeight) andTile:@"频道"];
@@ -96,6 +97,10 @@ static const int homeRecommendVCCellHeight = 100;
     UIButton *btn = [[UIButton alloc] initWithFrame: frame];
     [btn setTitle:title forState:UIControlStateNormal];
     [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:18]];
+    [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor systemPinkColor] forState: UIControlStateSelected];
+    [btn setTitleColor:[UIColor systemPinkColor] forState: UIControlStateSelected];
+    [btn setTitleColor:[UIColor systemPinkColor] forState:UIControlStateHighlighted];
     return btn;
 }
 
@@ -124,6 +129,7 @@ static const int homeRecommendVCCellHeight = 100;
     
     _headMBtn = [self buttonWithFrame:CGRectMake(WIDTH / 2 - headButtonWidth / 2, 0, headButtonWidth, headButtonHeight) andTile:@"推荐"];
     [_headMBtn addTarget:self action:@selector(goRecommendView) forControlEvents:UIControlEventTouchUpInside];
+    [_headMBtn setSelected:YES];
     [_headView addSubview:_headMBtn];
     
     
@@ -169,6 +175,7 @@ static const int homeRecommendVCCellHeight = 100;
     [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self initHomeTopView];
     [self initBottomView];
+    [self updateButtonSelectedWithNumberForBottomView:1];
     [self initHomeRecommendVC];
     [self addCurrentView];
     
@@ -177,18 +184,21 @@ static const int homeRecommendVCCellHeight = 100;
 - (void) goRecommendView {
     [self removeCurrentView];
     [self initHomeRecommendVC];
+    [self updateButtonSelectedWithNumberForHomeTopView:2];
     [self addCurrentView];
 }
 
 - (void) goLiveView {
     [self removeCurrentView];
     [self initHomeLiveVC];
+    [self updateButtonSelectedWithNumberForHomeTopView:1];
     [self addCurrentView];
 }
 
 - (void) goHotView {
     [self removeCurrentView];
     [self initHomeHotVC];
+    [self updateButtonSelectedWithNumberForHomeTopView:3];
     [self addCurrentView];
 }
 
@@ -212,6 +222,7 @@ static const int homeRecommendVCCellHeight = 100;
     _headLBtn = [self buttonWithFrame:CGRectMake(WIDTH / 3 - headButtonWidth / 2, 0, headButtonWidth, headButtonHeight) andTile:@"频道"];
     [_headLBtn addTarget:self action:@selector(goChannelView) forControlEvents: UIControlEventTouchUpInside];
     [_headView addSubview:_headLBtn];
+    [_headLBtn setSelected:YES];
     
     _headRBtn = [self buttonWithFrame:CGRectMake(WIDTH * 2 / 3 - headButtonWidth / 2, 0, headButtonWidth, headButtonHeight) andTile:@"分区"];
     [_headRBtn addTarget:self action:@selector(goZoneView) forControlEvents:UIControlEventTouchUpInside];
@@ -239,6 +250,7 @@ static const int homeRecommendVCCellHeight = 100;
     [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self initChannelTopView];
     [self initBottomView];
+    [self updateButtonSelectedWithNumberForBottomView:2];
     [self initChannelHomeVC];
     [self addCurrentView];
 }
@@ -246,12 +258,14 @@ static const int homeRecommendVCCellHeight = 100;
 - (void) goChannelView {
     [self removeCurrentView];
     [self initChannelHomeVC];
+    [self updateButtonSelectedWithNumberForChannelTopView:1];
     [self addCurrentView];
 }
 
 - (void) goZoneView {
     [self removeCurrentView];
     [self initChannelZoneVC];
+    [self updateButtonSelectedWithNumberForChannelTopView:2];
     [self addCurrentView];
 }
 
@@ -286,6 +300,67 @@ static const int homeRecommendVCCellHeight = 100;
     [self addChildViewController:_currentVC];
     [self.view addSubview:_currentVC.view];
     [_currentVC didMoveToParentViewController:self];
+}
+
+- (void) updateButtonSelectedWithNumberForHomeTopView: (int) index {
+    [_headLBtn setSelected:NO];
+    [_headMBtn setSelected:NO];
+    [_headRBtn setSelected:NO];
+    switch (index) {
+        case 1:
+            [_headLBtn setSelected:YES];
+            break;
+        case 2:
+            [_headMBtn setSelected:YES];
+            break;
+        case 3:
+            [_headRBtn setSelected:YES];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void) updateButtonSelectedWithNumberForChannelTopView: (int) index {
+    [_headLBtn setSelected:NO];
+    [_headRBtn setSelected:NO];
+    switch (index) {
+        case 1:
+            [_headLBtn setSelected:YES];
+            break;
+        case 2:
+            [_headRBtn setSelected:YES];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void) updateButtonSelectedWithNumberForBottomView: (int) index {
+    [_bottomFirstBtn setSelected:NO];
+    [_bottomSecondBtn setSelected:NO];
+    [_bottomThirdBtn setSelected:NO];
+    [_bottomForthBtn setSelected:NO];
+    [_bottomFifthBtn setSelected:NO];
+    switch (index) {
+        case 1:
+            [_bottomFirstBtn setSelected:YES];
+            break;
+        case 2:
+            [_bottomSecondBtn setSelected:YES];
+            break;
+        case 3:
+            [_bottomThirdBtn setSelected:YES];
+            break;
+        case 4:
+            [_bottomForthBtn setSelected:YES];
+            break;
+        case 5:
+            [_bottomFifthBtn setSelected:YES];
+            break;;
+        default:
+            break;
+    }
 }
 /*
 #pragma mark - Navigation

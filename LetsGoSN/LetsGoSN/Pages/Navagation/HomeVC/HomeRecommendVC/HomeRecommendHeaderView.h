@@ -10,7 +10,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeRecommendHeaderView : UICollectionReusableView
-
+@property (nonatomic) int headerViewHeight;
+@property (nonatomic) int headerViewHorizonPadding;
+@property (nonatomic) int headerViewTopPadding;
 @property (nonatomic) UIImageView *imageView;
 
 @end
