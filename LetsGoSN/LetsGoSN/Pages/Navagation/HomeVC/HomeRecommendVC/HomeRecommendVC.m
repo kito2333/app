@@ -27,6 +27,7 @@ static NSString * const reuseIdentifier = @"Cell";
     // Register cell classes
     [self initView];
 //    [self initHeaderView];
+    [self loadVideoData];
 }
 
 - (void) initView {
@@ -37,6 +38,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView registerClass:[HomeRecommendHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HomeRecommendHeaderView"];
 }
 
+/*
 - (NSMutableArray *)dataList {
     if (!_dataList) {
         _dataList = [NSMutableArray array];
@@ -48,9 +50,30 @@ static NSString * const reuseIdentifier = @"Cell";
     }
     return _dataList;
 }
-
+*/
 - (void) setParentVC:(MyViewController *)parentVC {
     _parentVC = parentVC;
+}
+
+- (void) loadVideoData {
+    //method 1
+    /*
+    NSString *mainBundleDirectory = [[NSBundle mainBundle] bundlePath];
+    NSString *path = [mainBundleDirectory stringByAppendingPathComponent:@"mockData.json"];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    NSData *data = [[NSData alloc] initWithContentsOfURL:url]; */
+    
+    //method 2
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"mockData" ofType:@"json"];
+    NSData* data = [[NSData alloc] initWithContentsOfFile:path];
+    
+    NSError* error;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    if (!dic || error) {
+        NSLog(@"JSON解析失败");
+    }
+//    NSLog(@"%@", dic);
+    self.dataList = [dic objectForKey:@"videos"];
 }
 
 /*
@@ -107,10 +130,32 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     HomeRecommendVCCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
-    HomeRecommendVCData *data = self.dataList[indexPath.item];
-    [cell setData: data];
+    NSMutableDictionary *dict = self.dataList[indexPath.row];
+    [cell.title setText:[dict objectForKey:@"title"]];
+    [cell.playTime setText: [NSString stringWithFormat:@"Click:%@", [dict objectForKey:@"playTime"]]];
+    [cell.danmakuCount setText:[NSString stringWithFormat:@"DM:%@",[dict objectForKey:@"danmakuCount"]]];
+    [cell.videoTime setText:[self transfromToTime: [dict objectForKey:@"videoTime"]]];
+    UIImage *img = [UIImage imageNamed:[dict objectForKey:@"videoImage"]];
+    [cell.imageView setImage: img];
+//    HomeRecommendVCData *data = self.dataList[indexPath.item];
+//    [cell setData: data];
     return cell;
+}
+
+- (NSString *) transfromToTime: (NSString *) secondString {
+    NSString *time = @"0:00";
+    int second = [secondString intValue];
+    if (second < 0) {
+        return time;
+    }
+    int hour = (second / 3600) % 24;
+    int minute = (second % 3600) / 60;
+    if (minute < 10) {
+        time = [NSString stringWithFormat:@"%d:0%d", hour, minute];
+    } else {
+        time = [NSString stringWithFormat:@"%d:%d", hour, minute];
+    }
+    return time;
 }
 
 #pragma mark <UICollectionViewDelegate>

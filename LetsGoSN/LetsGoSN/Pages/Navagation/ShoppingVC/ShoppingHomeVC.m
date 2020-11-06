@@ -1,18 +1,17 @@
 //
-//  ChannelZoneVC.m
+//  ShoppingHomeVC.m
 //  LetsGoSN
 //
-//  Created by 花泽真菜 on 2020/11/4.
+//  Created by 花泽真菜 on 2020/11/6.
 //
 
-#import "ChannelZoneVC.h"
-#import "ChannelZoneVCCell.h"
+#import "ShoppingHomeVC.h"
 
-@interface ChannelZoneVC ()
+@interface ShoppingHomeVC ()
 
 @end
 
-@implementation ChannelZoneVC
+@implementation ShoppingHomeVC
 
 static NSString * const reuseIdentifier = @"Cell";
 
@@ -23,9 +22,8 @@ static NSString * const reuseIdentifier = @"Cell";
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Register cell classes
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     [self.collectionView setBackgroundColor:[UIColor grayColor]];
-    [self.collectionView registerClass:[ChannelZoneVCCell class] forCellWithReuseIdentifier:@"ChannelZoneVCCell"];
-    
     // Do any additional setup after loading the view.
 }
 
@@ -47,13 +45,14 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 32;
+    return 20;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ChannelZoneVCCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ChannelZoneVCCell" forIndexPath:indexPath];
-    
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     [cell setBackgroundColor:[UIColor whiteColor]];
+    // Configure the cell
+    
     return cell;
 }
 

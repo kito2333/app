@@ -51,18 +51,18 @@
     int playTimeHorizonPadding = width / 25;
     int playLabelHeight = height / 15;
     int yPosition = height - 2 * labelHeight - playLabelHeight - 10;
-    int playLabelWidth = width / 3;
+    int playLabelWidth = width / 2;
     
     self.playTime = [[UILabel alloc] initWithFrame:CGRectMake(playTimeHorizonPadding, yPosition, playLabelWidth, playLabelHeight)];
     [self.playTime setFont:[UIFont systemFontOfSize:13]];
-    [self.playTime setText: [NSString stringWithFormat:@"Click  %d", 0]];
+    [self.playTime setText: [NSString stringWithFormat:@"Click:%d", 0]];
     [self.playTime setTextColor:[UIColor whiteColor]];
     [self.playTime adjustsFontSizeToFitWidth];
     
-    int danmakuLabelWidth = width / 4;
-    self.danmakuCount = [[UILabel alloc] initWithFrame:CGRectMake((width - danmakuLabelWidth) / 2, yPosition, danmakuLabelWidth, playLabelHeight)];
+    int danmakuLabelWidth = width / 3;
+    self.danmakuCount = [[UILabel alloc] initWithFrame:CGRectMake(width * 59 / 100 - danmakuLabelWidth / 2, yPosition, danmakuLabelWidth, playLabelHeight)];
     [self.danmakuCount setFont:[UIFont systemFontOfSize:13]];
-    [self.danmakuCount setText:[NSString stringWithFormat:@"DM:  %d", 0]];
+    [self.danmakuCount setText:[NSString stringWithFormat:@"DM:%d", 0]];
     [self.danmakuCount setTextColor:[UIColor whiteColor]];
     [self.danmakuCount adjustsFontSizeToFitWidth];
     

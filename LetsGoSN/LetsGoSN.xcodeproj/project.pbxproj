@@ -27,6 +27,10 @@
 		AABFFB1E2552579000835B20 /* ChannelZoneVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFB1D2552579000835B20 /* ChannelZoneVCCell.m */; };
 		AABFFB2825528E2C00835B20 /* HomeRecommendVCData.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFB2725528E2C00835B20 /* HomeRecommendVCData.m */; };
 		AABFFB2F2552A72000835B20 /* HomeRecommendClickVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFB2E2552A72000835B20 /* HomeRecommendClickVC.m */; };
+		AABFFB38255417EA00835B20 /* mockData.json in Resources */ = {isa = PBXBuildFile; fileRef = AABFFB37255417EA00835B20 /* mockData.json */; };
+		AABFFB4B2555277900835B20 /* NewsHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFB4A2555277900835B20 /* NewsHomeVC.m */; };
+		AABFFB5625552B5800835B20 /* ShoppingHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFB5525552B5800835B20 /* ShoppingHomeVC.m */; };
+		AABFFB5C2555309800835B20 /* SpaceHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFFB5B2555309800835B20 /* SpaceHomeVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +91,13 @@
 		AABFFB2725528E2C00835B20 /* HomeRecommendVCData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeRecommendVCData.m; sourceTree = "<group>"; };
 		AABFFB2D2552A72000835B20 /* HomeRecommendClickVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeRecommendClickVC.h; sourceTree = "<group>"; };
 		AABFFB2E2552A72000835B20 /* HomeRecommendClickVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeRecommendClickVC.m; sourceTree = "<group>"; };
+		AABFFB37255417EA00835B20 /* mockData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mockData.json; sourceTree = "<group>"; };
+		AABFFB492555277900835B20 /* NewsHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsHomeVC.h; sourceTree = "<group>"; };
+		AABFFB4A2555277900835B20 /* NewsHomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsHomeVC.m; sourceTree = "<group>"; };
+		AABFFB5425552B5800835B20 /* ShoppingHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShoppingHomeVC.h; sourceTree = "<group>"; };
+		AABFFB5525552B5800835B20 /* ShoppingHomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShoppingHomeVC.m; sourceTree = "<group>"; };
+		AABFFB5A2555309800835B20 /* SpaceHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpaceHomeVC.h; sourceTree = "<group>"; };
+		AABFFB5B2555309800835B20 /* SpaceHomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpaceHomeVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +128,9 @@
 		AA96394F25467F41004AA620 /* Navagation */ = {
 			isa = PBXGroup;
 			children = (
+				AABFFB5325552B3600835B20 /* SpaceVC */,
+				AABFFB5225552B2800835B20 /* ShoppingVC */,
+				AABFFB452555274300835B20 /* NewsVC */,
 				AABFFAFA2551632300835B20 /* ChannelVC */,
 				AABFFADB255158A800835B20 /* HomeVC */,
 			);
@@ -206,6 +220,7 @@
 		AABFFAE32551599800835B20 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				AABFFB36255417C000835B20 /* MockData */,
 				AABFFB2225525A3800835B20 /* ChannelVCData */,
 				AABFFAE4255159A100835B20 /* HomeVCData */,
 			);
@@ -254,6 +269,41 @@
 				AABFFB2E2552A72000835B20 /* HomeRecommendClickVC.m */,
 			);
 			path = HomeRecommendVC;
+			sourceTree = "<group>";
+		};
+		AABFFB36255417C000835B20 /* MockData */ = {
+			isa = PBXGroup;
+			children = (
+				AABFFB37255417EA00835B20 /* mockData.json */,
+			);
+			path = MockData;
+			sourceTree = "<group>";
+		};
+		AABFFB452555274300835B20 /* NewsVC */ = {
+			isa = PBXGroup;
+			children = (
+				AABFFB492555277900835B20 /* NewsHomeVC.h */,
+				AABFFB4A2555277900835B20 /* NewsHomeVC.m */,
+			);
+			path = NewsVC;
+			sourceTree = "<group>";
+		};
+		AABFFB5225552B2800835B20 /* ShoppingVC */ = {
+			isa = PBXGroup;
+			children = (
+				AABFFB5425552B5800835B20 /* ShoppingHomeVC.h */,
+				AABFFB5525552B5800835B20 /* ShoppingHomeVC.m */,
+			);
+			path = ShoppingVC;
+			sourceTree = "<group>";
+		};
+		AABFFB5325552B3600835B20 /* SpaceVC */ = {
+			isa = PBXGroup;
+			children = (
+				AABFFB5A2555309800835B20 /* SpaceHomeVC.h */,
+				AABFFB5B2555309800835B20 /* SpaceHomeVC.m */,
+			);
+			path = SpaceVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,6 +408,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AABFFB38255417EA00835B20 /* mockData.json in Resources */,
 				AAB2A730254671EC0038AF7D /* LaunchScreen.storyboard in Resources */,
 				AAB2A72D254671EC0038AF7D /* Assets.xcassets in Resources */,
 				AAB2A72B254671EA0038AF7D /* Main.storyboard in Resources */,
@@ -390,13 +441,16 @@
 				AAB2A722254671EA0038AF7D /* AppDelegate.m in Sources */,
 				AABFFAED2551624800835B20 /* HomeLiveVC.m in Sources */,
 				AABFFB182552574F00835B20 /* ChannelZoneVC.m in Sources */,
+				AABFFB5625552B5800835B20 /* ShoppingHomeVC.m in Sources */,
 				AABFFADE2551591F00835B20 /* HomeRecommendVC.m in Sources */,
+				AABFFB4B2555277900835B20 /* NewsHomeVC.m in Sources */,
 				AABFFB2825528E2C00835B20 /* HomeRecommendVCData.m in Sources */,
 				AABFFB2F2552A72000835B20 /* HomeRecommendClickVC.m in Sources */,
 				AABFFAE7255159CA00835B20 /* HomeRecommendVCCell.m in Sources */,
 				AABFFB0925524BCD00835B20 /* HomeRecommendHeaderView.m in Sources */,
 				AAB2A733254671EC0038AF7D /* main.m in Sources */,
 				AAB2A725254671EA0038AF7D /* SceneDelegate.m in Sources */,
+				AABFFB5C2555309800835B20 /* SpaceHomeVC.m in Sources */,
 				AAB2A75E2546745C0038AF7D /* MyViewController.m in Sources */,
 				AABFFB1E2552579000835B20 /* ChannelZoneVCCell.m in Sources */,
 				AABFFAFD2551636400835B20 /* HomeHotVC.m in Sources */,
