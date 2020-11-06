@@ -19,8 +19,8 @@
 }
 
 -(void) setLayout {
-    int width = self.contentView.bounds.size.width;
-    int height = self.contentView.bounds.size.height;
+    float width = self.contentView.bounds.size.width;
+    float height = self.contentView.bounds.size.height;
     
     int imageViewHeight = height * 2 / 3;
     int imageViewHorizonPadding = 0;
